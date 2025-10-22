@@ -111,71 +111,80 @@
         }
 
         /* Header Styles */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+          header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 0;
-        }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center; /* Ensure vertical centering */
+    height: 100%; /* Take full height of navbar */
+}
 
-        .logo span {
-            color: var(--secondary);
-        }
+.logo span {
+    color: var(--secondary);
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center; /* Ensure nav links are vertically centered */
+    height: 100%; /* Take full height of navbar */
+}
 
-        .nav-links li {
-            margin-left: 2rem;
-        }
+.nav-links li {
+    margin-left: 2rem;
+}
 
-        .nav-links a {
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
+.nav-links a {
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center; /* Ensure link text is vertically centered */
+    height: 100%; /* Take full height of parent */
+}
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+.nav-links a:hover {
+    color: var(--primary);
+}
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+}
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+.nav-links a:hover::after {
+    width: 100%;
+}
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    align-items: center; /* Ensure hamburger is vertically centered */
+}
 
         /* Hero Section */
         .hero {
@@ -545,7 +554,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Access E-Talk<span>Plus Inc,</span></a>
+               <a class="logo"><img src="accessetalk.jpg" width="50" height="50">Access E-Talk<pre> </pre><span>Plus Inc,</span></a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
