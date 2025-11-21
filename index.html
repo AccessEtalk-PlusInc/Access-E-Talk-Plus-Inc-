@@ -268,6 +268,28 @@
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
+        .pictureflex {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 800px;
+      margin: 40px auto;
+      font-family: Arial, sans-serif;
+    }
+    .pictureflex img {
+      width: 250px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .pictureflex p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Right image, left text */
+    .reverse {
+      flex-direction: row-reverse;
+    }
 
         /* News Section */
         .news-grid {
@@ -642,6 +664,23 @@
                 </div>
             </div>
         </div>
+          <!-- Left image, right text -->
+  <div class="pictureflex">
+    <img src="/Access-E-Talk-Plus-Inc-/col2.jpg" alt="Sample Image">
+      <h1>hes got to be strong/h1>
+    <p>
+     With both the teacher and the student, we clearly define the define and direction to come up with a plan and output that is aligned with the student needs.
+    </p>
+  </div>
+
+  <!-- Right image, left text -->
+  <div class="pictureflex reverse">
+    <img src="/Access-E-Talk-Plus-Inc-/coll1.jpg" alt="Sample Image">
+      <h1>you are the hero</h1>
+   <p>
+      We carry the heavy load for each service english from start to finish.
+    </p>
+  </div>
     </section>
 
     <!-- News Section -->
