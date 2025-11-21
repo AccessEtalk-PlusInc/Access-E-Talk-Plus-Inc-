@@ -557,22 +557,21 @@
 <body>
 
     <!-- NAV -->
-    <header>
+  <header>
         <div class="container">
             <nav class="navbar">
-                <a class="logo">
-                    <img src="/Access-E-Talk-Plus-Inc-/accessetalk.jpg" width="50" height="50">
-                    Access E-Talk <span style="color:var(--secondary)">Plus Inc,</span>
-                </a>
-
-                <ul class="nav-links">
+                  <a class="logo"><img src="E:\Sanji\New Corporate site idea\accessetalk.jpg" width="50" height="50">Access E-Talk<pre> </pre><span>Plus Inc,</span></a>
+                <ul class="nav-links"> 
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Why us</a></li>
-                    <li><a href="news.html">News</a></li>
+                    <li><a href="#news">News</a></li>
                     <li><a href="#careers">Careers</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
             </nav>
         </div>
     </header>
@@ -618,45 +617,74 @@
     </div>
 
     <!-- FOOTER -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-
                 <div class="footer-column">
                     <h3>Access E-Talk Plus Inc,</h3>
-                    <p>Shaping the future through teaching that empowers students.</p>
+                    <p>Shaping the future through Teaching that empower students and transform world.</p>
+                    
                 </div>
-
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#services">Why us</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="index.html#careers">Careers</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Why us</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#careers">Careers</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column">
-                    <h3>Media</h3>
+                    <h3>Contact us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Address</a></li>
+                        <li><a href="#">Cebu City</a></li>
+                        <li><a href="#">Phone</a></li>
+                        <li><a href="#">1231464654564</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">   
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
+                    <!-- email         
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" style="margin-bottom: 1rem;">
+                            <button type="submit" class="btn">Subscribe</button>
+                        </div>
+                    </form>
+                    -->
                 </div>
-
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2023 Access E-Talk. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+     <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
 
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
