@@ -344,6 +344,81 @@
             margin-bottom: 1rem;
         }
 
+        /* pop ups */
+  /* Buttons */
+  .open-popup {
+    padding: 12px 24px;
+    background: #059669;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  /* Overlay */
+  .popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Show popup */
+  .popup.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Popup content */
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px; /* <-- Adjust popup width here */
+    width: 90%;        /* Responsive width */
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    transform: scale(0.8); /* Start smaller */
+    transition: transform 0.3s ease;
+  }
+
+  /* Scale up when active */
+  .popup.active .popup-content {
+    transform: scale(1);
+  }
+
+  /* Close button */
+  .close-popup {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* Image inside popup */
+  .popup-content img {
+    width: 100%; /* <-- Adjust image size here */
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
         /* Careers Section */
         .careers {
             background: #f1f5f9;
@@ -713,7 +788,8 @@
                     <div class="news-content">
                         <div class="news-date">Dec 19, 2025</div>
                         <h3 class="news-title">Christmas Party 2025</h3>
-                        <p></p>
+                        <!-- Pop up trigger -->
+                        <button class="open-popup" data-popup="popup1">More Info</button>
                         <!--btn <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read More</a>-->
                     </div>
                 </div>
@@ -774,6 +850,14 @@
                 </div>
             </div>
         </div>
+        <!--  POPUPS CONTENTS -->
+        <div class="popup" id="popup1">
+  <div class="popup-content">
+    <button class="close-popup">&times;</button>
+    <img src="/Access-E-Talk-Plus-Inc-/ChristmasPT2025.png">
+    <p>Christmas na pasko pa siya</p>
+    </div>
+</div>
     </section>
 
     <!-- Careers Section -->
@@ -954,6 +1038,35 @@
                 navLinks.classList.remove('active');
             });
         });
+
+ // Pop ups   
+  const buttons = document.querySelectorAll('.open-popup');
+  const popups = document.querySelectorAll('.popup');
+
+  // Open popup on button click
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const popupId = button.getAttribute('data-popup');
+      document.getElementById(popupId).classList.add('active');
+    });
+  });
+
+  // Close popup on close button click or clicking overlay
+  popups.forEach(popup => {
+    const closeBtn = popup.querySelector('.close-popup');
+
+    // Close on close button
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('active');
+    });
+
+    // Close when clicking outside popup content
+    popup.addEventListener('click', (e) => {
+      if(e.target === popup) {
+        popup.classList.remove('active');
+      }
+    });
+  });
     </script>
 </body>
 </html>
