@@ -240,34 +240,31 @@
         }
 
         /* Services Section */
-        .services {
-            background: #f1f5f9;
-        }
-
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;          /* side by side */
             gap: 2rem;
+            justify-content: center;
         }
 
         .service-card {
             background: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
-            text-align: center;
         }
-
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+        .process-img {
+            width: 100%;            /* same width */
+            height: auto;           /* keeps quality */
+            object-fit: contain;    /* prevents distortion */
         }
+
+        
+    /* Choose Us */
     .pictureflex {
       display: flex;
       align-items: center;
@@ -723,28 +720,33 @@
     </section>
 
     <!-- Services Section -->
-    <section class="section services">
-        <div class="container">
-            <h2 class="section-title">Process</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="/Access-E-Talk-Plus-Inc-/Step1.png">
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>3rd Step</h3>
-                    <p>third third third</p>
-                </div>
+   <section class="section services">
+    <div class="container">
+        <h2 class="section-title">Process</h2>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="/Access-E-Talk-Plus-Inc-/Step1.png" class="process-img">
+            </div>
+
+            <div class="service-card">
+                 <img src="/Access-E-Talk-Plus-Inc-/Step1.png" class="process-img">
+            </div>
+
+            <div class="service-card">
+                 <img src="/Access-E-Talk-Plus-Inc-/Step1.png" class="process-img">
+            </div>
+            <div class="service-card">
+                 <img src="/Access-E-Talk-Plus-Inc-/Step1.png" class="process-img">
+            </div>
+            <div class="service-card">
+                 <img src="/Access-E-Talk-Plus-Inc-/Step1.png" class="process-img">
             </div>
         </div>
-    </section>
+        
+
+    </div>
+</section>
 
     <!-- Choose Us -->
     <section class="section" id="services">
