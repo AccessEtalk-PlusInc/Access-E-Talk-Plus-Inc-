@@ -432,8 +432,15 @@
 
         .careers-grid {
             display: grid;
+            /* back to original
             grid-template-columns: repeat(2, 1fr);
+            */
             gap: 2rem;
+            
+            grid-template-columns: 1fr; /* 1 column = card centered */
+            justify-content: center;    /* Centers the column in the middle */
+            max-width: 600px;           /* Optional: keeps card narrow */
+            margin: 0 auto;             /* Centers the whole grid */
         }
 
         .career-card {
@@ -955,8 +962,8 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Cebu City</span>
                     </div>
-                    <p>We're looking for an experienced teachers to join our team. You'll work on challenging problems and help shape our world sasdadasdsads asdsa.</p>
-                    <a href="#" class="btn" style="margin-top: 1rem;">Apply Now</a>
+                    <p>We are seeking enthusiastic tutors who can deliver engaging, high-quality lessons to learners of all ages. If you have strong English skills, a love for teaching, and a drive to help students grow, wed love to have you on board!</p>
+                    <a href="https://www.mynimo.com/jobs/view/474351/cebu/esl-teacher-office-based" class="btn" style="margin-top: 1rem;">Apply Now</a>
                 </div>
                 <!-- Careers Section 4 
                 <div class="career-card">
