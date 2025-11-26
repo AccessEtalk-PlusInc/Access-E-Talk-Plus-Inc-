@@ -219,12 +219,22 @@
         .about-text h2 {
             font-size: 2.5rem;
         }
-
+        /* Status */
         .about-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 2rem;
+        }
+        .stat img {
+            width: 100px;     /* change this to resize */
+            height: 100px;    /* change this to resize */
+            object-fit: contain; 
+            display: block;
+            margin: 0 auto 0.5rem;  /* controls spacing below image */
+        }
+        .stat-text {
+            margin-top: 0.2rem; 
         }
 
         .stat {
