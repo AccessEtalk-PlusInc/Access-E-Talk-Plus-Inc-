@@ -193,11 +193,29 @@
 
         /* Hero Section */
         .hero {
-            background: url('/Access-E-Talk-Plus-Inc-/Banner.png') center/cover no-repeat;
+            /*
             color: white;
             padding: 5rem 0 5rem;
             text-align: center;
+            */
+            position: relative;
+            width: 100%;
+            overflow: hidden; /* GUIDE: Keeps layout clean */
         }
+    .hero-image {
+    width: 100%;
+    height: auto; /* ← GUIDE: Image keeps its full original size (no crop) */
+    object-fit: contain; /* ← GUIDE: Shows the whole image */
+    display: block;
+}
+    .hero-content {
+    position: absolute; /* ← Remove this if you want text below image */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
 
         .hero h1 {
             font-size: 3.5rem;
@@ -707,6 +725,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+         <img src="/Access-E-Talk-Plus-Inc-/Banner.png" class="hero-image">
         <div class="container">
             <h1>Building Global Communicators</h1>
             <p>Speak with Confidence, Learn with Experience.</p>
