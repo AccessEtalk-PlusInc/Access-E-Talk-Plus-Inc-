@@ -193,28 +193,22 @@
 
         /* Hero Section */
         .hero {
-            /*
-            color: white;
-            padding: 5rem 0 5rem;
-            text-align: center;
-            */
-            position: relative;
-            width: 100%;
-            overflow: hidden; /* GUIDE: Keeps layout clean */
+          height: 400px;        /* ← CHANGE THIS to adjust stretched image size */
         }
     .hero-image {
     width: 100%;
-    height: auto; /* ← GUIDE: Image keeps its full original size (no crop) */
-    object-fit: contain; /* ← GUIDE: Shows the whole image */
-    display: block;
+    height: 100%;         /* ← image will stretch vertically */
+    object-fit: fill;     /* ← STRETCH MODE */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;     
 }
     .hero-content {
-    position: absolute; /* ← Remove this if you want text below image */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+   position: relative;
     text-align: center;
     color: white;
+    padding-top: 150px; /* optional, keeps text centered */
 }
 
         .hero h1 {
