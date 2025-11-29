@@ -535,11 +535,11 @@
             box-shadow: var(--shadow);
         }
         .contact-form img {
-            display: block;          /* makes margin auto work */
-            margin: 0 auto;          /* centers the image */
-            width: 150px;            /* controls image width */
-            height: auto;            /* keeps the image ratio */
-    
+            width: 100%;        /* image fills the full width of the box */
+            height: 100%;       /* image fills the full height */
+            object-fit: cover;  /* makes the image cover the whole box */
+            border-radius: var(--radius); /* matches the container’s curves */
+            display: block;     /* removes extra spacing */
         }
 
 
