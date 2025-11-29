@@ -527,13 +527,21 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
+        /* location */
         .contact-form {
             background: white;
             padding: 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
+        .contact-form img {
+            display: block;          /* makes margin auto work */
+            margin: 0 auto;          /* centers the image */
+            width: 150px;            /* controls image width */
+            height: auto;            /* keeps the image ratio */
+    
+        }
+
 
         .form-group {
             margin-bottom: 1.5rem;
