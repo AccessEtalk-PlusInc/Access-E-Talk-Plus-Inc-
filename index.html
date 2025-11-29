@@ -297,8 +297,25 @@
             height: auto;           /* keeps quality */
             object-fit: contain;    /* prevents distortion */
         }
+    /* Mission & Vision */
+     .mv-row {
+        display: flex;        /* side-by-side */
+        gap: 20px;            /* space between Mission and Vision */
+    }
 
-        
+    /* Box styling for both mission and vision */
+    .mv-box {
+        flex: 1;              /* equal width */
+        padding: 15px;        /* inside spacing */
+        border: 1px solid #ccc;   /* simple border */
+        border-radius: 6px;       /* rounded corners */
+    }
+
+    /* Title text */
+    .mv-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }   
     /* Choose Us */
     .pictureflex {
       display: flex;
@@ -770,6 +787,29 @@
 
                 </div>
             </div>
+        </div>
+    </section>
+<!-- Mission & Vision-->
+    <section>
+        <div class="container">
+            <div class="mv-row">
+
+    <!-- Mission -->
+    <div class="mv-box">
+        <div class="mv-title">Mission</div>
+        <p>
+            Our mission is to provide quality service with integrity and excellence.
+        </p>
+    </div>
+
+    <!-- Vision -->
+    <div class="mv-box">
+        <div class="mv-title">Vision</div>
+        <p>
+            Our vision is to become a trusted leader in our industry.
+        </p>
+    </div>
+    </div>
         </div>
     </section>
 
