@@ -475,6 +475,39 @@
     border-radius: 8px;
     margin-bottom: 12px;
   }
+ /* Slide wrapper */
+.slides {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Each slide */
+.slide-box {
+  display: none; /* hide all slides */
+  text-align: left;
+}
+
+/* Show only the active slide */
+.slide-box.active {
+  display: block;
+}
+
+/* Slide button styles */
+.slide-controls {
+  display: flex;
+  justify-content: space-between; /* center left/right */
+  margin-top: 15px;
+}
+
+.slide-controls button {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
         /* Careers Section */
         .careers {
@@ -976,65 +1009,151 @@
                 </div>
             </div>
         </div>
-        <!--  POPUPS CONTENTS -->
+    <!--  POPUPS CONTENTS -->
         <div class="popup" id="popup1">
   <div class="popup-content">
+    <div class="slide">
     <button class="close-popup">&times;</button>
+    <div class="slide-box active">
     <img src="/Access-E-Talk-Plus-Inc-/ChristmasPT2025.png">
     <p>Christmas Party 2025</p>
     <p>Its that time of the year! We are delighted to announce that our 2025 Christmas Party will be held on December 19, 2025 (Friday) at 6:00 PM.</p>
     <p>Join us as we celebrate the season with good food, exciting activities, and great company. We look forward to spending this special evening with everyone! 🎄🎉</p>
     </div>
+    <div class="slide-box">
+    <img src="/Access-E-Talk-Plus-Inc-/OctoberEOM2025.png">
+    <p>Christmas Party 2025</p>
+    <p>Its that time of the year! We are delighted to announce that our 2025 Christmas Party will be held on December 19, 2025 (Friday) at 6:00 PM.</p>
+    <p>Join us as we celebrate the season with good food, exciting activities, and great company. We look forward to spending this special evening with everyone!asdasdasdsadsadsadsa 🎄🎉</p>
+    </div>
 </div>
-        <!--  POPCONTENT 2 -->
-        <div class="popup" id="popup2">
+  <div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>
+</div>
+<!--  POPCONTENT 2 -->
+<div class="popup" id="popup2">
   <div class="popup-content">
+    <div class="slide">
     <button class="close-popup">&times;</button>
+    <div class="slide-box active">
     <img src="/Access-E-Talk-Plus-Inc-/OctoberEOM2025.png">
     <p>Recognizing this month of October 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
     <p>🏆 Employee of the Month - Teacher Aeden</p>
     <p>Congratulations!</p>
     </div>
+     <div class="slide-box">
+    <img src="/Access-E-Talk-Plus-Inc-/OctoberEOM2025.png">
+    <p>Recognizing this month of October 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
+    <p>🏆 Employee of the Month - Teacher Aedenadasdsadsadsad</p>
+    <p>Congratulations!</p>
+    </div>
+</div>
+<div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>
 </div>
  <!--  POPCONTENT 3 -->
-        <div class="popup" id="popup3">
+<div class="popup" id="popup3">
   <div class="popup-content">
+    <div class="slide">
     <button class="close-popup">&times;</button>
+    <div class="slide-box active">
     <img src="/Access-E-Talk-Plus-Inc-/AutumnWinners1.jpg">
     <p>Autumn never looked this good! </p>
     <p>For this October Engagement Activity, a big round of applause to our Top 3 Autumn Style Icon! Your creative and cozy styles truly captured the spirit of the season warm, vibrant, and full of fall flair! 🍂🧣</p>
     <p>And thank you to everyone who joined the fun! Every outfit, every smile, and every touch of autumn magic made the day extra special. 🌻</p>
     </div>
+     <div class="slide-box">
+    <img src="/Access-E-Talk-Plus-Inc-/AutumnWinners1.jpg">
+    <p>Autumn never looked this good! </p>
+    <p>For this October Engagement Activity, a big round of applause to our Top 3 Autumn Style Icon! Your creative and cozy styles truly captured the spirit of the season warm, vibrant, and full of fall flair! 🍂🧣</p>
+    <p>And thank you to everyone who joined the fun! Every outfit, every smile, and every touch of autumn magic made the day extra special.asdasdsadasdsadsad 🌻</p>
+    </div>
+</div>
+<div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>    
 </div>
 <!--  POPCONTENT 4 -->
 <div class="popup" id="popup4">
   <div class="popup-content">
+    <div class="slide">
     <button class="close-popup">&times;</button>
+    <div class="slide-box active">
     <img src="/Access-E-Talk-Plus-Inc-/EOMSept.jpg">
     <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
     <p>Congratulations!</p>
     <p>🏆 Employee of the Month - Teacher Mae</p>
     </div>
+    <div class="slide-box">
+    <img src="/Access-E-Talk-Plus-Inc-/EOMSept.jpg">
+    <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
+    <p>Congratulations!</p>
+    <p>🏆 Employee of the Month - Teacher Maeasdsadsadadsad</p>
+    </div>
+</div>
+<div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>
 </div>
 <!--  POPCONTENT 5 -->
 <div class="popup" id="popup5">
   <div class="popup-content">
+  <div class="slide">
     <button class="close-popup">&times;</button>
+    <div class="slide-box active">
     <img src="/Access-E-Talk-Plus-Inc-/MIOESept.jpg">
     <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
     <p>Congratulations!</p>
     <p>🌱 Most Improved Employee - Teacher Shenna</p>
     </div>
+    <div class="slide-box">
+    <img src="/Access-E-Talk-Plus-Inc-/MIOESept.jpg">
+    <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment sadasdsadsadsadsa. 🥳👏</p>
+    <p>Congratulations!</p>
+    <p>🌱 Most Improved Employee - Teacher Shenna</p>
+    </div>
+</div>
+<div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>
 </div>
 <!--  POPCONTENT 6 -->
-<div class="popup" id="popup6">
+<div class="popup" id="popup6">   
   <div class="popup-content">
-    <button class="close-popup">&times;</button>
+      <div class="slide">
+        <button class="close-popup">&times;</button>
+        <div class="slide-box active"> 
     <img src="/Access-E-Talk-Plus-Inc-/OPsept.jpg">
     <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment. 🥳👏</p>
     <p>Congratulations!</p>
     <p>💪 Outstanding Performer - Teacher Hazel</p>
     </div>
+
+     <div class="slide-box"> 
+    <img src="/Access-E-Talk-Plus-Inc-/OPsept.jpg">
+    <p>Recognizing this month of September 2025 awardees for their exceptional contribution and commitment.asdasdad 🥳👏</p>
+    <p>Congratulations!</p>
+    <p>💪 Outstanding Performer - Teacher Hazel</p>
+    </div>
+    
+</div>
+<div class="slide-controls">
+      <button class="prev-slide">Prev</button>
+      <button class="next-slide">Next</button>
+    </div>
+</div>
 </div>
         
     </section>
@@ -1199,34 +1318,50 @@
             });
         });
 
- // Pop ups   
-  const buttons = document.querySelectorAll('.open-popup');
-  const popups = document.querySelectorAll('.popup');
+ // Open popups
+document.querySelectorAll('.open-popup').forEach(button => {
+  button.addEventListener('click', () => {
+    const popupId = button.dataset.popup;
+    document.getElementById(popupId).classList.add('active');
+  });
+});
 
-  // Open popup on button click
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const popupId = button.getAttribute('data-popup');
-      document.getElementById(popupId).classList.add('active');
-    });
+// For each popup — give its OWN slide system
+document.querySelectorAll('.popup').forEach(popup => {
+
+  const closeBtn = popup.querySelector('.close-popup');
+  closeBtn.addEventListener('click', () => popup.classList.remove('active'));
+
+  popup.addEventListener('click', e => {
+    if (e.target === popup) popup.classList.remove('active');
   });
 
-  // Close popup on close button click or clicking overlay
-  popups.forEach(popup => {
-    const closeBtn = popup.querySelector('.close-popup');
+  // --- SLIDE SYSTEM ---
+  let slideIndex = 0;
+  const slides = popup.querySelectorAll('.slide-box');
+  const nextBtn = popup.querySelector('.next-slide');
+  const prevBtn = popup.querySelector('.prev-slide');
 
-    // Close on close button
-    closeBtn.addEventListener('click', () => {
-      popup.classList.remove('active');
+  if (slides.length > 0 && nextBtn && prevBtn) {
+
+    function showSlide(i) {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[i].classList.add('active');
+    }
+
+    nextBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
     });
 
-    // Close when clicking outside popup content
-    popup.addEventListener('click', (e) => {
-      if(e.target === popup) {
-        popup.classList.remove('active');
-      }
+    prevBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
     });
-  });
+
+  }
+
+});
     </script>
 </body>
 </html>
