@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Albums - Access E-Talk Plus, Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-size: xx-large;
+        }
+        h3, h4 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-size: xx-large;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            margin: 10px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #e48a0a;
+        }
+
+        /* Header Styles - FIXED NAVBAR */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+        }
+        
+        /* Albums Gallery Styles */
+        .albums-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .album-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-cover {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .album-card:hover .album-cover img {
+            transform: scale(1.05);
+        }
+
+        .album-info {
+            padding: 1.5rem;
+        }
+
+        .album-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .album-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .album-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .album-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .album-stat {
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .album-stat i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                text-align: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                padding: 2rem 0;
+                height: auto;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .nav-links a {
+                height: auto;
+                justify-content: center;
+            }
+            
+            .hero {
+                margin-top: 70px;
+            }
+            
+            .albums-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                margin-bottom: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .category-filter {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .albums-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .album-cover {
+                height: 200px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links.active {
+                height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+        
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn, .filter-btn, .nav-links a {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+                @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.album-card {
+    animation: fadeIn 0.5s ease;
+}
+    </style>
+</head>
+<body>
+    <!-- Header - FIXED NAVBAR -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo"><img src="/Access-E-Talk-Plus-Inc-/accessetalk.jpg" width="50" height="50">Access E-Talk<pre> </pre><span>Plus, Inc.</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#services">Why Us</a></li>
+                    <li><a href="index.html#news">News</a></li>
+                    <li><a href="albums.html" class="active">Albums</a></li>
+                    <li><a href="index.html#careers">Careers</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Albums Section -->
+    <section class="section" id="albums">
+        <div class="container">
+            <h2 class="section-title">Our Image Albums</h2>
+            <p class="albums-intro">
+                Browse through our collection of memorable moments, events, and activities that showcase 
+                the vibrant community and culture at Access E-Talk Plus, Inc.
+            </p>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="events">Christmas Party</button>
+                <button class="filter-btn" data-filter="team">Team Building Activities</button>
+                <button class="filter-btn" data-filter="celebration">Monthly Awardess</button>
+                <button class="filter-btn" data-filter="awards">Monthly Birthday Celebrants</button>
+                <button class="filter-btn" data-filter="engage">Engagement Activities</button>
+                <button class="filter-btn" data-filter="work">Work Anniversary</button>
+            </div>
+
+            <!-- Albums Grid -->
+            <div class="albums-grid">
+                <!-- Christmas Party -->
+                <div class="album-card" data-category="events">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/ChristmasPT2025.png" alt="Christmas Party 2025">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Christmas Party 2025</h3>
+                        <div class="album-date">December 2025</div>
+                        <p class="album-description">
+                            Celebrating the holiday season with our amazing team. A night of joy, 
+                            laughter, and festive cheer that brought everyone together.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>24 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Dec 15, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Christmas party -->
+                <div class="album-card" data-category="events">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/party2024.png" alt="Christmas Party 2025">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Christmas Party 2025 sample</h3>
+                        <div class="album-date">December 2025</div>
+                        <p class="album-description">
+                            Celebrating the holiday season with our amazing team. A night of joy, 
+                            laughter, and festive cheer that brought everyone together.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>24 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Dec 15, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Building -->
+                <div class="album-card" data-category="team">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/mondayTB.png" alt="Team Building 2025">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Team Building 2025</h3>
+                        <div class="album-date">November 2025</div>
+                        <p class="album-description">
+                            Strengthening bonds and building teamwork through fun activities and 
+                            collaborative challenges that brought out the best in everyone.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>48 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Nov 10, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 4 -->
+                <div class="album-card" data-category="awards">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/MIOESept.jpg" alt="Monthly Awards">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Monthly Awards Ceremony</h3>
+                        <div class="album-date">September 2025</div>
+                        <p class="album-description">
+                            Recognizing and celebrating the outstanding achievements of our dedicated 
+                            team members who go above and beyond.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>36 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Sep 30, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 5 -->
+                <div class="album-card" data-category="celebration">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/mariandec6.png" alt="Birthday Celebrations">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Monthly Birthday Celebrations</h3>
+                        <div class="album-date">December 2025</div>
+                        <p class="album-description">
+                            Celebrating our team members' special days with cakes, laughter, 
+                            and warm wishes from the entire Access E-Talk family.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>32 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Dec 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 6 -->
+                <div class="album-card" data-category="events">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/halo.png" alt="Halloween Activities">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Halloween Engagement Activities</h3>
+                        <div class="album-date">October 2025</div>
+                        <p class="album-description">
+                            Spooky fun and creative costumes filled the office during our Halloween 
+                            engagement activities that brought out everyone's playful side.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>42 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Oct 31, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 7 -->
+                <div class="album-card" data-category="team">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/workapply.png" alt="Work Anniversary">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Work Anniversary Celebrations</h3>
+                        <div class="album-date">2025</div>
+                        <p class="album-description">
+                            Honoring the dedication and loyalty of our team members who have been 
+                            with us through the years, growing together as a family.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>28 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Throughout 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 8 -->
+                <div class="album-card" data-category="events">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/party2024.png" alt="Christmas Party 2024">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Christmas Party 2024</h3>
+                        <div class="album-date">December 2024</div>
+                        <p class="album-description">
+                            Looking back at last year's festive celebration filled with games, 
+                            gifts, and unforgettable memories with our wonderful team.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>38 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>Dec 20, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 9 -->
+                <div class="album-card" data-category="team">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/Teamcalo.jpg" alt="Team Collaboration">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">Daily Team Collaboration</h3>
+                        <div class="album-date">Ongoing</div>
+                        <p class="album-description">
+                            Candid moments from our daily work life showing teamwork, collaboration, 
+                            and the friendly environment that makes our workplace special.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>56 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>2024-2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- engagement activities  -->
+                <div class="album-card" data-category="engage">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/Teamcalo.jpg" alt="Team Collaboration">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">engage</h3>
+                        <div class="album-date">Ongoing</div>
+                        <p class="album-description">
+                            Candid moments from our daily work life showing teamwork, collaboration, 
+                            and the friendly environment that makes our workplace special.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>56 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>2024-2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Work Anniversaries  -->
+                <div class="album-card" data-category="work">
+                    <div class="album-cover">
+                        <img src="/Access-E-Talk-Plus-Inc-/Teamcalo.jpg" alt="Team Collaboration">
+                    </div>
+                    <div class="album-info">
+                        <h3 class="album-title">work anniversaries</h3>
+                        <div class="album-date">Ongoing</div>
+                        <p class="album-description">
+                            Candid moments from our daily work life showing teamwork, collaboration, 
+                            and the friendly environment that makes our workplace special.
+                        </p>
+                        <div class="album-stats">
+                            <div class="album-stat">
+                                <i class="fas fa-images"></i>
+                                <span>56 Photos</span>
+                            </div>
+                            <div class="album-stat">
+                                <i class="far fa-calendar"></i>
+                                <span>2024-2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+
+            <!-- Back to Home Button -->
+            <div class="back-home">
+                <a href="index.html#news" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Access E-Talk Plus, Inc.</h3>
+                    <p>Shaping the future through Teaching that empower students and transform world.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#services">Why us</a></li>
+                        <li><a href="index.html#news">News</a></li>
+                        <li><a href="albums.html">Albums</a></li>
+                        <li><a href="index.html#careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Media</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/access.etalk/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="viber://add?number=639998862499" target="_blank"><i class="fab fa-viber"></i></a>
+                        <a href="https://www.instagram.com/accessetalk_official/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Access E-Talk Plus, Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            // Change hamburger icon
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Album Filtering Functionality with instant filtering
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get filter value
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Get all album cards
+                const albums = document.querySelectorAll('.album-card');
+                
+                // Filter albums - show/hide based on category
+                albums.forEach(album => {
+                    const albumCategory = album.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || albumCategory === filterValue) {
+                        album.style.display = 'block';
+                        // Add fade-in effect
+                        album.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        album.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add CSS for fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Prevent body scroll when mobile menu is open
+        hamburger.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.style.color = 'var(--primary)';
+                    link.style.fontWeight = '600';
+                }
+            });
+        });
+
+        // Check for URL parameters and apply filter
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    
+    if (filterParam) {
+        // Find the corresponding filter button
+        const filterButton = document.querySelector(`.filter-btn[data-filter="${filterParam}"]`);
+        if (filterButton) {
+            // Simulate click on the filter button
+            setTimeout(() => {
+                filterButton.click();
+            }, 100);
+        }
+    }
+});
+    </script>
+</body>
+</html>
