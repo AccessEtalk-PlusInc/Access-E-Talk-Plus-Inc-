@@ -531,6 +531,103 @@
 .album-card {
     animation: fadeIn 0.5s ease;
 }
+
+/* Lightbox Modal Styles */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    position: relative;
+    /* These values give you control */
+    max-width: min(90vw, 1200px);     /* Maximum of 90% viewport or 1200px */
+    max-height: min(85vh, 800px);     /* Maximum of 85% viewport or 800px */
+    width: auto;
+    height: auto;
+}
+
+.lightbox-img {
+    /* Image will fill the container but keep aspect ratio */
+    width: 500px;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: var(--transition);
+}
+
+.lightbox-close:hover {
+    color: var(--secondary);
+    transform: scale(1.1);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.lightbox-prev, .lightbox-next {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+    background: var(--primary);
+    transform: scale(1.1);
+}
+
+.lightbox-caption {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Add cursor pointer to album covers */
+.album-cover {
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -1188,6 +1285,24 @@
             </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="lightbox-close">&times;</button>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1341,10 +1456,167 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Lightbox functionality
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImg = document.querySelector('.lightbox-img');
+const lightboxCaption = document.querySelector('.lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+let currentImageIndex = 0;
+let visibleImages = []; // Will store only currently visible/filtered images
+
+// Get only VISIBLE images (filtered)
+function getVisibleImages() {
+    const visibleAlbumCovers = document.querySelectorAll('.album-card[style*="display: block"] .album-cover img, .album-card:not([style]) .album-cover img');
+    
+    // Filter out hidden images (display: none)
+    visibleImages = Array.from(visibleAlbumCovers)
+        .filter(img => {
+            const albumCard = img.closest('.album-card');
+            return albumCard && 
+                   (albumCard.style.display !== 'none' || 
+                    !albumCard.style.display);
+        })
+        .map(img => ({
+            src: img.src,
+            alt: img.alt || 'Access E-Talk Photo',
+            element: img
+        }));
+    
+    return visibleImages;
+}
+
+// Open lightbox with specific image
+function openLightbox(imageElement) {
+    visibleImages = getVisibleImages();
+    
+    // Find the index of the clicked image in visibleImages
+    currentImageIndex = visibleImages.findIndex(img => img.element === imageElement);
+    
+    if (currentImageIndex === -1 || visibleImages.length === 0) {
+        console.error('Image not found in visible images');
+        return;
+    }
+    
+    lightboxImg.src = visibleImages[currentImageIndex].src;
+    lightboxCaption.textContent = visibleImages[currentImageIndex].alt;
+    lightboxModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Update navigation buttons visibility
+    updateNavButtons();
+}
+
+// Close lightbox
+function closeLightbox() {
+    lightboxModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Navigate to next image (only within visible images)
+function nextImage() {
+    if (visibleImages.length === 0) return;
+    
+    currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+    lightboxImg.src = visibleImages[currentImageIndex].src;
+    lightboxCaption.textContent = visibleImages[currentImageIndex].alt;
+    
+    updateNavButtons();
+}
+
+// Navigate to previous image (only within visible images)
+function prevImage() {
+    if (visibleImages.length === 0) return;
+    
+    currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+    lightboxImg.src = visibleImages[currentImageIndex].src;
+    lightboxCaption.textContent = visibleImages[currentImageIndex].alt;
+    
+    updateNavButtons();
+}
+
+// Update navigation button states
+function updateNavButtons() {
+    // Hide buttons if only one image is visible
+    if (visibleImages.length <= 1) {
+        lightboxPrev.style.display = 'none';
+        lightboxNext.style.display = 'none';
+    } else {
+        lightboxPrev.style.display = 'flex';
+        lightboxNext.style.display = 'flex';
+    }
+}
+
+// Event Listeners for Lightbox
+document.addEventListener('DOMContentLoaded', () => {
+    // Add click event to all album cover images
+    document.querySelectorAll('.album-cover img').forEach((img) => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openLightbox(e.target);
+        });
+    });
+    
+    // Close lightbox
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) {
+            closeLightbox();
+        }
+    });
+    
+    // Navigation
+    lightboxNext.addEventListener('click', nextImage);
+    lightboxPrev.addEventListener('click', prevImage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightboxModal.style.display === 'flex') {
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+            }
+        }
+    });
+    
+    // Update the filter functionality to also reset lightbox
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // Your existing filter code here...
+            
+            // Re-attach click events to newly shown images
+            setTimeout(() => {
+                // Remove old click events to prevent duplicates
+                document.querySelectorAll('.album-cover img').forEach(img => {
+                    const newImg = img.cloneNode(true);
+                    img.parentNode.replaceChild(newImg, img);
+                });
+                
+                // Re-attach click events
+                document.querySelectorAll('.album-cover img').forEach((img) => {
+                    img.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openLightbox(e.target);
+                    });
+                });
+            }, 100);
+        });
+    });
+});
     </script>
 </body>
 
 </html>
+
 
 
 
